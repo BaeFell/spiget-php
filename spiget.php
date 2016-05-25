@@ -219,7 +219,7 @@ function getNewAuthors($size = 0) {
 	return $out;
 }
 
-function getAuthorDetails($resource} {
+function getAuthorDetails($resource) {
 	global $fullhost, $context;
 	$id = $resource;
 	if($resource instanceof Resource) {
@@ -243,7 +243,6 @@ function search($type, $query) {
 		$out[$id] = $name;
 	}
 	return $out;
-}
 }
 
 function searchResources($query) {
