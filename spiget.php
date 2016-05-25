@@ -149,11 +149,4 @@ function getResourceAuthor($resource) {
 		return $resourceauthor;
 	}
 }
-
-
-
-foreach(getResources() as $name => $id) {
-	$resource = getResource($name, true);
-	echo $resource->ResourceAuthor->username . "<br>";
-}
 ?>
