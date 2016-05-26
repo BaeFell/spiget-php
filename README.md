@@ -1,7 +1,7 @@
 # spiget-php
 Access the Spiget.org API through PHP
 
-### This API supports the following Spiget features:
+
 
 #### Key
 Feature | `function($required, [options = "default value], $suggestion|$other_suggestion)`: Supported ![tick](http://nfell2009.uk/tick.png) | Not supported ![cross](http://nfell2009.uk/cross.png)
@@ -9,6 +9,8 @@ Feature | `function($required, [options = "default value], $suggestion|$other_su
 Some of the variable names may differ from spiget-php.php and the list below. This is of no concern if you're just using the API script for normal development. The variable names in the docs here are purely for informative purposes so people can understand what 'type' of variable should be used.
 
 Note: some functions support the custom object types (Resource, ResourceDetails, etc), what each function supports will be listed soon.
+
+### This API supports the following Spiget features (81.82% of the total API supported (18/22)):
 
 #### Resources
 Resource List | `getResources($id, [$full = true])`: ![tick](http://nfell2009.uk/tick.png)
