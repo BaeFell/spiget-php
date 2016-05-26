@@ -47,7 +47,7 @@ Author List | `getAuthors([$size = 0])`: ![tick](http://nfell2009.uk/tick.png)
 
 Author Details | `getNewResources($author|$resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Author Resources | `resourcesOfAuthor($author|$resource)`: ![tick](http://nfell2009.uk/tick.png)
+Author Resources | `resourcesOfAuthor($author|$resource) OR getResourcesOfAuthor($author|$resource)`: ![tick](http://nfell2009.uk/tick.png)
 
 New Authors | `getNewAuthors([$size = 0])`: ![tick](http://nfell2009.uk/tick.png)
 
