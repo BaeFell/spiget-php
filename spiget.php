@@ -310,6 +310,8 @@ function downloadFile($url, $path)
     }
 }
 
+
+
 function resourcesOfAuthor($resource) {
 	global $fullhost, $context;
 	$id = $resource;
@@ -327,6 +329,9 @@ function resourcesOfAuthor($resource) {
 		array_push($out, $resource);
 	}
 	return $out;
+}
 
+function getResourcesOfAuthor($resource) {
+	return resourcesOfAuthor($resource);
 }
 ?>
