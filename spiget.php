@@ -52,7 +52,7 @@ function getResources($size = 0) {
 	}
 	return $out;
 }
-function getResource($id, $full) {
+function getResource($id, $full = true) {
 	global $fullhost, $context;
 	$cont = file_get_contents($fullhost . 'resources/' . $id, false, $context);
 	$json = json_decode($cont);
@@ -135,6 +135,23 @@ function getResourceAuthor($resource) {
 	}
 }
 
+function getNewResources($size = 0) {
+	global $fullhost, $context;
+	if($size == 0) {
+		$cont = file_get_contents($fullhost . 'resources/new', false, $context);
+	} else {
+		$cont = file_get_contents($fullhost . 'resources/new?size=' . $size, false, $context);
+	}
+	$json = json_decode($cont);
+	$out = array();
+	foreach($json as $j) {
+		$id       = $j->id;
+		$name     = $j->name;
+		$out[$id] = $name;
+	}
+	return $out;
+}
+
 function getResourceCategories() {
 	global $fullhost, $context;
 	$cont = file_get_contents($fullhost . 'categories', false, $context);
@@ -148,10 +165,7 @@ function getResourceCategories() {
 	return $out;
 }
 
-function getCategoryDetails($resource = "") {
-	if($resource == "") {
-		return getResourceCategories();
-	}
+function getCategoryDetails($resource) {
 	global $fullhost, $context;
 	$id = $resource;
 	if($resource instanceof Resource) {
@@ -251,5 +265,68 @@ function searchResources($query) {
 
 function searchAuthors($query) {
 	return search("authors/", $query);
+}
+
+function downloadResource($resource, $path = "./downloads/{resourece-name}") {
+	global $fullhost, $context;
+	$id = $resource;
+	if($resource instanceof Resource) {
+		$id = $resource->name;
+	}
+	$path = str_replace("{resource-name}", $id, $path);
+	$url  = $fullhost . $id . "/download";
+	return downloadFile($url, $path);
+}
+
+function downloadResourceForVersion($resource, $version = "latest", $path = "./downloads/{resourece-name}") {
+	global $fullhost, $context;
+	$id = $resource;
+	if($resource instanceof Resource) {
+		$id = $resource->name;
+	}
+	$path = str_replace("{resource-name}", $id, $path);
+	$url  = $fullhost . $id . "/versions/" . $version . "/download";
+	return downloadFile($url, $path);
+}
+
+function downloadFile($url, $path)
+{
+    $newfname = $path;
+    $file = fopen ($url, 'rb');
+    if ($file) {
+        $newf = fopen ($newfname, 'wb');
+        if ($newf) {
+            while(!feof($file)) {
+                fwrite($newf, fread($file, 1024 * 8), 1024 * 8);
+            }
+        }
+    }
+    if ($file) {
+        fclose($file);
+    }
+    if ($newf) {
+        fclose($newf);
+        return $newf;
+    }
+}
+
+function resourcesOfAuthor($resource) {
+	global $fullhost, $context;
+	$id = $resource;
+	if($resource instanceof Resource) {
+		$id = $resource->author;
+	} else if ($resource instanceof AuthorDetails) {
+		$id = $resource->id;
+	}
+	$cont = file_get_contents($fullhost . 'authors/' . $id . "/resources", false, $context);
+	$json = json_decode($cont);
+	$out = array();
+	foreach($json as $j) {
+		$resource = new Resource();
+		$resource = setVars($resource, $j);
+		array_push($out, $resource);
+	}
+	return $out;
+
 }
 ?>
