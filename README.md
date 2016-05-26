@@ -3,53 +3,60 @@ Access the Spiget.org API through PHP
 
 ### This API supports the following Spiget features:
 
+#### Key
+Feature | `function($required, [options = "default value], $suggestion|$other_suggestion)`: Supported ![tick](http://nfell2009.uk/tick.png) | Not supported ![cross](http://nfell2009.uk/cross.png)
+
+Some of the variable names may differ from spiget-php.php and the list below. This is of no concern if you're just using the API script for normal development. The variable names in the docs here are purely for informative purposes so people can understand what 'type' of variable should be used.
+
+Note: some functions support the custom object types (Resource, ResourceDetails, etc), what each function supports will be listed soon.
+
 #### Resources
-Resource List: ![tick](http://nfell2009.uk/tick.png)
+Resource List | `getResources($id, [$full = true])`: ![tick](http://nfell2009.uk/tick.png)
 
-Resource Details: ![tick](http://nfell2009.uk/tick.png)
+Resource Details | `getResourceDetails($resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Resource Content: ![tick](http://nfell2009.uk/tick.png)
+Resource Content | `getResourceContent($resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Resource Description: ![tick](http://nfell2009.uk/tick.png)
+Resource Description | `getResourceDescription($resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Resource Download: ![cross](http://nfell2009.uk/cross.png)
+Resource Download | `downloadResource($resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Resource Versions: ![tick](http://nfell2009.uk/tick.png)
+Resource Versions | `getResourceVersions($resource, [$version = "latest"])`: ![tick](http://nfell2009.uk/tick.png)
 
 Resource for Version: ![cross](http://nfell2009.uk/cross.png)
 
-Resource Version Download: ![cross](http://nfell2009.uk/cross.png)
+Resource Version Download | `downloadResourceForVersion($resource, [$version = "latest"])`: ![tick](http://nfell2009.uk/tick.png)
 
-Resource Author: ![tick](http://nfell2009.uk/tick.png)
+Resource Author | `getResourceAuthor($resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-New Resources: ![tick](http://nfell2009.uk/tick.png)
+New Resources | `getNewResources([$size = 0])`: ![tick](http://nfell2009.uk/tick.png)
 
 
 #### Resources Categories
-Category List: ![tick](http://nfell2009.uk/tick.png)
+Category List | `getResourceCategories()`: ![tick](http://nfell2009.uk/tick.png)
 
-Category Details: ![tick](http://nfell2009.uk/tick.png)
+Category Details | `getCategoryDetails($category|$resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Category Resources: ![tick](http://nfell2009.uk/tick.png)
+Category Resources | `getCategoryResources($category|$resource)`: ![tick](http://nfell2009.uk/tick.png)
 
 
 #### Authors
-Author List: ![tick](http://nfell2009.uk/tick.png)
+Author List | `getAuthors([$size = 0])`: ![tick](http://nfell2009.uk/tick.png)
 
-Author Details: ![tick](http://nfell2009.uk/tick.png)
+Author Details | `getNewResources($author|$resource)`: ![tick](http://nfell2009.uk/tick.png)
 
-Author Resources: ![cross](http://nfell2009.uk/cross.png)
+Author Resources | `resourcesOfAuthor($author|$resource)`: ![cross](http://nfell2009.uk/cross.png)
 
-New Authors: ![tick](http://nfell2009.uk/tick.png)
+New Authors | `getNewAuthors([$size = 0])`: ![tick](http://nfell2009.uk/tick.png)
 
 
 #### Searching
-Resource Search: ![tick](http://nfell2009.uk/tick.png)
+Resource Search | `searchResources($query)`: ![tick](http://nfell2009.uk/tick.png)
 
-Author Search: ![tick](http://nfell2009.uk/tick.png)
+Author Search | `searchAuthors($query)`(: ![tick](http://nfell2009.uk/tick.png)
 
 
-#### Webhooks
+#### Webhooks (not sure how these will be implemented)
 Webhook Events: ![cross](http://nfell2009.uk/cross.png)
 
 Register Webhook: ![cross](http://nfell2009.uk/cross.png)
